@@ -7,10 +7,17 @@ app.use(cors())
 
 app.get("/api/v1/products/:number", (req, res) => {
     let data= dataMaker( req.params.number)
-    return res.json({
-        number: req.params.number,
-        data: data
-    })
+    if(req.params.number > 100) {
+        return res.send({
+            message: "Size must be smaller than 100"
+        })
+    } else {
+        return res.json({
+            number: req.params.number,
+            data: data
+        })
+    }
+   
 })
 
 app.get('*', (req,res) => {
