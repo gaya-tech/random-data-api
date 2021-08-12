@@ -106,7 +106,7 @@ let tagMaker = function() {
 }
 
 let imageUrl = function() {
-  return Math.floor(Math.random(images.length) * images.length)
+  return images[Math.floor(Math.random(images.length) * images.length)];
 }
 
 function dataMaker(num) {
