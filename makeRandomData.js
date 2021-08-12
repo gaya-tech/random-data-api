@@ -122,7 +122,7 @@ let imageUrl = function() {
 function dataMaker(num) {
   let data = [];
   let id = 0;
-  for (let i = 0; i < num; i++) {
+  for (let i = 0; i <= num; i++) {
     let obj = {};
     let productNameAndCategoryAndTagVal = productNameAndCategoryAndTag();
     obj.id = id++;
@@ -141,7 +141,7 @@ function dataMaker(num) {
     obj.totalAvailable = totalAvailable(100, 500);
     obj.topCategory = productNameAndCategoryAndTagVal[1];
     obj.subCategory = productNameAndCategoryAndTagVal[2];
-    // obj.tags =[productNameAndCategoryAndTagVal[2]]
+    obj.tags =[productNameAndCategoryAndTagVal[2]];
 
     data.push(obj);
   }
