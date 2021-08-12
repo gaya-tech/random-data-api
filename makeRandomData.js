@@ -28,7 +28,12 @@ let sellers = ["Big Fashion", "Jeanswala", "Rombo Trader", "Delhi Jeans"];
 
 let categories = ["Jeans", "Pyjama", "Lycra Pant", "Jogger"];
 
-let subCategory = ["demin"];
+let subCategories = {
+  "jeans": ["Demin","Damaged","Coloured","Scratched","Funky","Slim-fit"],
+  "Pyjamas": ["Hoisery","Cotton","Sports",""],
+  "Lycra Pant": ["Funky","Solid-Color","Soft","Black"],
+  "Jogger": ["Denim","Cotton","Loose-Fit","Coloured"],
+}
 
 let tags = [
   "scratched",
@@ -41,32 +46,37 @@ let tags = [
 
 let colors = ["red", "blue", "black", "grey", "tan", "olive green"];
 
-let productNameAndCategoryAndTag = function () {
-  let brand = brands[Math.floor(Math.random(brands.length) * brands.length)];
-  let tag = tags[Math.floor(Math.random(tags.length) * tags.length)];
-  let category =
-    categories[Math.floor(Math.random(categories.length) * categories.length)];
+// random index generator
+function randomDataFromArray(arr) {
+  return arr[Math.floor(Math.random(arr.length) * arr.length)]
+}
 
+let productNameAndCategoryAndTag = function () {
+  let brand = randomDataFromArray(brands)
+  let tag = randomDataFromArray(tags);
+  let category =
+    randomDataFromArray(categories);
+  let subCategory = subCategories[category];
+  let getSubCategory = randomDataFromArray(subCategory)
+  console.log(subCategory)
     let name =  brand + " " + tag + " " + category;
-  return [name,category,tag];
+  return [name,category,getSubCategory];
 };
 
 let color = function () {
-  return colors[Math.floor(Math.random(colors.length) * colors.length)];
+  return randomDataFromArray(colors)
 };
 
 let tag = function () {
-  return tags[Math.floor(Math.random(tags.length) * tags.length)];
+  return randomDataFromArray(tags)
 };
 
 let discount = function () {
-  return discounts[
-    Math.floor(Math.random(discounts.length) * discounts.length)
-  ];
+  return randomDataFromArray(discounts)
 };
 
 let soldBy = function () {
-  return sellers[Math.floor(Math.random(sellers.length) * sellers.length)];
+  return randomDataFromArray(sellers);
 };
 
 let availableSizes = [28, 30, 32, 34, 36, 38, 40];
@@ -106,13 +116,13 @@ let tagMaker = function() {
 }
 
 let imageUrl = function() {
-  return images[Math.floor(Math.random(images.length) * images.length)];
+  return randomDataFromArray(images)
 }
 
 function dataMaker(num) {
   let data = [];
   let id = 0;
-  for (let i = 0; i <= num; i++) {
+  for (let i = 0; i < num; i++) {
     let obj = {};
     let productNameAndCategoryAndTagVal = productNameAndCategoryAndTag();
     obj.id = id++;
@@ -130,12 +140,14 @@ function dataMaker(num) {
     obj.inStock = true;
     obj.totalAvailable = totalAvailable(100, 500);
     obj.topCategory = productNameAndCategoryAndTagVal[1];
-    obj.subCategory = productNameAndCategoryAndTagVal[1];
-    obj.tags =[productNameAndCategoryAndTagVal[2]]
+    obj.subCategory = productNameAndCategoryAndTagVal[2];
+    // obj.tags =[productNameAndCategoryAndTagVal[2]]
 
     data.push(obj);
   }
   return data;
 }
+
+// console.log(dataMaker(1));
 
 module.exports = {dataMaker}
