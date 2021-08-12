@@ -29,8 +29,8 @@ let sellers = ["Big Fashion", "Jeanswala", "Rombo Trader", "Delhi Jeans"];
 let categories = ["Jeans", "Pyjama", "Lycra Pant", "Jogger"];
 
 let subCategories = {
-  "jeans": ["Demin","Damaged","Coloured","Scratched","Funky","Slim-fit"],
-  "Pyjamas": ["Hoisery","Cotton","Sports",""],
+  "Jeans": ["Demin","Damaged","Coloured","Scratched","Funky","Slim-fit"],
+  "Pyjama": ["Hoisery","Cotton","Sports",""],
   "Lycra Pant": ["Funky","Solid-Color","Soft","Black"],
   "Jogger": ["Denim","Cotton","Loose-Fit","Coloured"],
 }
@@ -57,7 +57,9 @@ let productNameAndCategoryAndTag = function () {
   let category =
     randomDataFromArray(categories);
   let subCategory = subCategories[category];
-  let getSubCategory = randomDataFromArray(subCategory)
+  console.log(subCategory);
+  let getSubCategory = randomDataFromArray(subCategory);
+
   console.log(subCategory)
     let name =  brand + " " + tag + " " + category;
   return [name,category,getSubCategory];
@@ -148,6 +150,6 @@ function dataMaker(num) {
   return data;
 }
 
-// console.log(dataMaker(1));
+console.log(dataMaker(5));
 
 module.exports = {dataMaker}
