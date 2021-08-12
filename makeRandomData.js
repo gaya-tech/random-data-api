@@ -11,6 +11,17 @@ let brands = [
   "Lee Cooper",
 ];
 
+let images = [
+  "https://i.ibb.co/zJSz4CN/ddfd.jpg",
+  "https://i.ibb.co/BskVkkC/dsjd.jpg",
+  "https://i.ibb.co/s6zgnN8/fdgdre.jpg",
+  "https://i.ibb.co/b1h4H9w/fdhvje.jpg",
+  "https://i.ibb.co/372gM9F/ffdsf.jpg",
+  "https://i.ibb.co/KsmNDbQ/gjkdf.jpg",
+  "https://i.ibb.co/sjYV0jk/sdfjhdsf.jpg",
+  "https://i.ibb.co/4WjF44n/Whats-App-Image-2021-05-30-at-8-10-27-PM.jpg"
+]
+
 let discounts = ["5", "10", "15", "20"];
 
 let sellers = ["Big Fashion", "Jeanswala", "Rombo Trader", "Delhi Jeans"];
@@ -94,6 +105,10 @@ let tagMaker = function() {
   
 }
 
+let imageUrl = function() {
+  return Math.floor(Math.random(images.length) * images.length)
+}
+
 function dataMaker(num) {
   let data = [];
   let id = 0;
@@ -101,7 +116,7 @@ function dataMaker(num) {
     let obj = {};
     let productNameAndCategoryAndTagVal = productNameAndCategoryAndTag();
     obj.id = id++;
-    obj.productImage = "https://picsum.photos/140/240"; 
+    obj.productImage = imageUrl(); 
     obj.productName = productNameAndCategoryAndTagVal[0];
     obj.soldBy = soldBy();
     obj.color = color();
