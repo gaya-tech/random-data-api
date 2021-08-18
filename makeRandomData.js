@@ -124,12 +124,13 @@ let imageUrl = function() {
 function dataMaker(num) {
   let data = [];
   let id = 0;
-  for (let i = 0; i <= num; i++) {
+  for (let i = 0; i < num; i++) {
     let obj = {};
     let productNameAndCategoryAndTagVal = productNameAndCategoryAndTag();
     obj.id = id++;
-    obj.productImage = imageUrl(); 
+    obj.productImage = [imageUrl(),imageUrl(),imageUrl(),imageUrl()]; 
     obj.productName = productNameAndCategoryAndTagVal[0];
+    obj.productDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Erat velit scelerisque in dictum non consectetur a erat nam. Leo integer malesuada nunc vel risus commodo viverra maecenas accumsan. Tristique senectus et netus et. At quis risus sed vulputate odio ut. Interdum varius sit amet mattis vulputate enim nulla aliquet. Dignissim suspendisse in est ante. Ac turpis egestas maecenas pharetra. Tortor posuere ac ut consequat semper viverra nam libero justo. Elit ut aliquam purus sit. Sit amet consectetur adipiscing elit duis tristique. Velit aliquet sagittis id consectetur. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus."
     obj.soldBy = soldBy();
     obj.color = color();
     obj.availableSizes = availableSizes;
@@ -150,6 +151,6 @@ function dataMaker(num) {
   return data;
 }
 
-console.log(dataMaker(5));
+console.log(dataMaker(1));
 
 module.exports = {dataMaker}
