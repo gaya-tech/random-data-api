@@ -145,6 +145,14 @@ function dataMaker(num) {
     obj.topCategory = productNameAndCategoryAndTagVal[1];
     obj.subCategory = productNameAndCategoryAndTagVal[2];
     obj.tags =[productNameAndCategoryAndTagVal[2]];
+    obj.producSpecification = [
+      "Best fabric quality",
+      "0 % returns",
+      "1921 people liked this product",
+      "87 % repeated order",
+      "Stylish and trending now",
+      "Soft and comfortable"
+    ]
 
     data.push(obj);
   }
