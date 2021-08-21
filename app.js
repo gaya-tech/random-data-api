@@ -1,5 +1,5 @@
 const express = require('express');
-const {dataMaker} = require('./makeRandomData')
+const {dataMakerSet} = require('./makeRandomData')
 const cors = require('cors');
 const app = express()
 

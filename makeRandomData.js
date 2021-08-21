@@ -81,7 +81,7 @@ let soldBy = function () {
   return randomDataFromArray(sellers);
 };
 
-let availableSizes = [28, 30, 32, 34, 36, 38, 40];
+let availableSizes = {28:50, 30:50, 32:50, 34:50, 36:50, 38:50, 40:50};
 
 
 let cutOutPrice = function (min, max) {
@@ -121,16 +121,14 @@ let imageUrl = function() {
   return randomDataFromArray(images)
 }
 
-function dataMaker(num) {
-  let data = [];
-  let id = 0;
-  for (let i = 0; i < num; i++) {
-    let obj = {};
+function dataMakerSize(id) {
+  let obj = {};
     let productNameAndCategoryAndTagVal = productNameAndCategoryAndTag();
-    obj.id = id++;
+    obj.id = id;
+    obj.type = "size",
     obj.productImage = [imageUrl(),imageUrl(),imageUrl(),imageUrl()]; 
     obj.productName = productNameAndCategoryAndTagVal[0];
-    obj.productDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Erat velit scelerisque in dictum non consectetur a erat nam. Leo integer malesuada nunc vel risus commodo viverra maecenas accumsan. Tristique senectus et netus et. At quis risus sed vulputate odio ut. Interdum varius sit amet mattis vulputate enim nulla aliquet. Dignissim suspendisse in est ante. Ac turpis egestas maecenas pharetra. Tortor posuere ac ut consequat semper viverra nam libero justo. Elit ut aliquam purus sit. Sit amet consectetur adipiscing elit duis tristique. Velit aliquet sagittis id consectetur. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus."
+    obj.productDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Erat velit scelerisque in dictum non consectetur a erat nam. Leo integer malesuada nunc vel risus commodo viverra maecenas accumsan. Tristique senectus et netus et. At quis risus sed vulputate odio ut. Interdum varius sit amet mattis vulputate enim nulla aliquet. Dignissim suspendisse in est ante. Ac turpis egestas maecenas pharetra. Tortor posuere ac ut consequat semper viverra nam libero justo. Elit ut aliquam purus sit. Sit amet consectetur adipiscing elit duis tristique."
     obj.soldBy = soldBy();
     obj.color = color();
     obj.availableSizes = availableSizes;
@@ -141,24 +139,77 @@ function dataMaker(num) {
     obj.marginRate = marginRate(obj.sellingPrice, obj.price);
     obj.minOrder = 10;
     obj.inStock = true;
-    obj.totalAvailable = totalAvailable(100, 500);
+    obj.totalAvailable = totalAvailable(120, 500);
     obj.topCategory = productNameAndCategoryAndTagVal[1];
     obj.subCategory = productNameAndCategoryAndTagVal[2];
     obj.tags =[productNameAndCategoryAndTagVal[2]];
     obj.producSpecification = [
       "Best fabric quality",
       "0 % returns",
-      "1921 people liked this product",
+      "1,921 people liked this product",
       "87 % repeated order",
       "Stylish and trending now",
       "Soft and comfortable"
     ]
 
-    data.push(obj);
-  }
-  return data;
+    // arr.push(obj);
+    return obj;
+
+  
 }
 
-console.log(dataMaker(1));
+function dataMakerSet(id) {
+  let obj = {};
+    let productNameAndCategoryAndTagVal = productNameAndCategoryAndTag();
+    obj.id = id;
+    obj.type = "set",
+    obj.productImage = [imageUrl(),imageUrl(),imageUrl(),imageUrl()]; 
+    obj.productName = productNameAndCategoryAndTagVal[0];
+    obj.productDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Erat velit scelerisque in dictum non consectetur a erat nam. Leo integer malesuada nunc vel risus commodo viverra maecenas accumsan. Tristique senectus et netus et. At quis risus sed vulputate odio ut. Interdum varius sit amet mattis vulputate enim nulla aliquet. Dignissim suspendisse in est ante. Ac turpis egestas maecenas pharetra. Tortor posuere ac ut consequat semper viverra nam libero justo. Elit ut aliquam purus sit. Sit amet consectetur adipiscing elit duis tristique."
+    obj.soldBy = soldBy();
+    obj.color = color();
+    obj.availableSet = 100;
+    obj.cutOutPrice = cutOutPrice(499, 999);
+    obj.discount = discount() + "%";
+    obj.price = price(obj.cutOutPrice, obj.discount);
+    obj.sellingPrice = sellingPrice(obj.price + 100, obj.price + 200);
+    obj.marginRate = marginRate(obj.sellingPrice, obj.price);
+    obj.minOrder = 2;
+    obj.inStock = true;
+    obj.totalAvailable = totalAvailable(120, 500);
+    obj.topCategory = productNameAndCategoryAndTagVal[1];
+    obj.subCategory = productNameAndCategoryAndTagVal[2];
+    obj.tags =[productNameAndCategoryAndTagVal[2]];
+    obj.producSpecification = [
+      "Best fabric quality",
+      "0 % returns",
+      "1,921 people liked this product",
+      "87 % repeated order",
+      "Stylish and trending now",
+      "Soft and comfortable"
+    ]
 
-module.exports = {dataMaker}
+    // arr.push(obj);
+    return obj;
+  
+}
+
+function dataMaker(num) {
+  let data = [];
+  for (let i = 0; i < num; i++) {
+  if(i % 2 === 0) {
+    console.log("Size");
+    data.push(dataMakerSize(i));  
+  } else if (i % 2 !== 0) {
+    console.log("Set");
+    data.push(dataMakerSet(i));  
+
+  }
+}
+  return data;
+
+}
+
+console.log(dataMaker(8));
+
+module.exports = {dataMaker};
