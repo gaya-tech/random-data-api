@@ -57,10 +57,8 @@ let productNameAndCategoryAndTag = function () {
   let category =
     randomDataFromArray(categories);
   let subCategory = subCategories[category];
-  console.log(subCategory);
   let getSubCategory = randomDataFromArray(subCategory);
 
-  console.log(subCategory)
     let name =  brand + " " + tag + " " + category;
   return [name,category,getSubCategory];
 };
@@ -196,12 +194,10 @@ function dataMakerSet(id) {
 
 function dataMaker(num) {
   let data = [];
-  for (let i = 0; i < num; i++) {
+  for (let i = 1; i <= num; i++) {
   if(i % 2 === 0) {
-    console.log("Size");
     data.push(dataMakerSize(i));  
   } else if (i % 2 !== 0) {
-    console.log("Set");
     data.push(dataMakerSet(i));  
 
   }
@@ -210,6 +206,6 @@ function dataMaker(num) {
 
 }
 
-console.log(dataMaker(8));
+// console.log(dataMaker(8));
 
 module.exports = {dataMaker};
