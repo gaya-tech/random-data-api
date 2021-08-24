@@ -14,7 +14,7 @@ app.get("/api/v1/products/:number", (req, res) => {
     } else {
         return res.json({
             number: req.params.number,
-            data: data
+            data: data ,
         })
     }
    
